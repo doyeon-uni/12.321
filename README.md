@@ -1,6 +1,5 @@
 # 12.321
-# Assignment 1
-# Rotation Rate, Cloud Cover and Albedo in CESM
+# Assignment 1: Rotation Rate, Cloud Cover and Albedo in CESM
 
 Configuration files and analysis code for a CESM sensitivity test: how do 0.5x and
 2.0x planetary rotation rates change cloud fraction and albedo?
