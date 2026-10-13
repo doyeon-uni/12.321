@@ -23,8 +23,8 @@ code was modified (no SourceMods). Each experiment adds one line:
 | Case | `user_nl_cam` entry | Value (s^-1) |
 |---|---|---|
 | control | (none, default) | 7.292115e-5 |
-| 0.5×Ω0 | `echo "omega = 3.6460575e-5` | 3.6460575e-5 |
-| 2.0×Ω0 | `echo "omega = 1.4584230e-4` | 1.4584230e-4 |
+| 0.5×Ω0 | `echo omega = 3.6460575e-5` | 3.6460575e-5 |
+| 2.0×Ω0 | `echo omega = 1.4584230e-4` | 1.4584230e-4 |
 
 ## Repository contents
 
