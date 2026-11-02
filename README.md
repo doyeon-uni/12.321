@@ -45,10 +45,10 @@ Unlike Assignment 1, which uses prescribed sea surface temperatures, this experi
 |---|---|
 | CESM version | 2.1.5 |
 | Compset | B1850 |
-| Resolution | [Insert resolution] |
-| Run length | [Insert run length] |
-| Spin-up discarded | [Insert spin-up period, if applicable] |
-| Cases | [Insert control and rotation-rate sensitivity cases] |
+| Resolution | f19_g17 |
+| Run length | 75 months |
+| Spin-up discarded | First 24 months |
+| Cases | Control (Ω₀ = 7.292115e-5 s⁻¹), 0.5×Ω₀ (3.6460575e-5), 2.0×Ω₀ (1.4584230e-4) |
 
 ### How the rotation rate was changed
 
