@@ -52,7 +52,35 @@ Unlike Assignment 1, which uses prescribed sea surface temperatures, this experi
 
 ### How the rotation rate was changed
 
-[Describe how the rotation rate was modified in the B1850 experiments. Specify whether the same CAM namelist parameter (`omega`) was used and whether any additional configuration changes were required.]
+### How the rotation rate was changed
+
+Unlike the F2000climo experiments in Assignment 1, the fully coupled B1850 configuration requires the planetary rotation rate to be modified consistently across all relevant model components, including the atmosphere (CAM6), ocean (POP2), and sea ice (CICE).
+
+The rotation rate was modified in two places:
+
+1. **CAM namelist (`user_nl_cam`):** The `omega` parameter was set to the target planetary rotation rate for each experiment.
+2. **Shared source code (`shr_const_mod.F90`):** A modified copy of `shr_const_mod.F90` was placed in `SourceMods/src.share/` for each perturbed case. The value of `SHR_CONST_SDAY` was changed to ensure that the shared planetary rotation constant was consistent with the modified rotation rate.
+
+In CESM, the shared angular rotation frequency is defined as:
+
+`SHR_CONST_OMEGA` = 2π / `SHR_CONST_SDAY`
+
+The default sidereal day is 86,164 seconds. Therefore, the sidereal day was doubled for the 0.5× rotation experiment and halved for the 2.0× rotation experiment.
+
+| Case | CAM namelist (`omega`) | `SHR_CONST_SDAY` (s) |
+|---|---:|---:|
+| Control (1.0×Ω₀) | 7.292115e-5 | 86164.0 |
+| 0.5×Ω₀ | 3.6460575e-5 | 172328.0 |
+| 2.0×Ω₀ | 1.4584230e-4 | 43082.0 |
+
+The control case retained the default source code and namelist settings. For the perturbed cases, both the CAM namelist and the shared source constant were modified to maintain consistency across the coupled model components.
+
+The modifications were verified by:
+- Checking the resulting CAM namelist values in `CaseDocs/atm`.
+- Inspecting `SHR_CONST_SDAY` in `SourceMods/src.share/shr_const_mod.F90` using `grep`.
+- Confirming from the CESM build log that the modified source file was compiled.
+
+No other source-code modifications were made specifically to change the planetary rotation rate.
 
 ### Key differences from Assignment 1
 
@@ -67,8 +95,7 @@ Unlike Assignment 1, which uses prescribed sea surface temperatures, this experi
 ## Repository contents
 
 - `config/`: Modified source files and namelist settings for each experiment.
-- `Analysis.ipynb`: Analysis and figures.
-- `figures/`: Figures used in the reports.
+- `Analysis*.ipynb`: Analysis and figures.
 
 ## Reproducing the analysis
 
